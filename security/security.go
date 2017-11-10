@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/context"
 )
 
-func authenticate(next http.Handler) http.Handler {
+func Authenticate(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		// sample token string taken from the New example

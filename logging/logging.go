@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func logger(next http.Handler) http.Handler {
+func Logger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.UserAgent())
 		log.Printf("--> %s %s", r.Method, r.URL.Path)
