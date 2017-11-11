@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+//Logger logs request/responses to console
 func Logger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.UserAgent())
@@ -19,19 +20,19 @@ func Logger(next http.Handler) http.Handler {
 	})
 }
 
-//LoggingResponseWriter is a struct to grab status codes for logging
-type LoggingResponseWriter struct {
+//LogWriter is a struct to grab status codes for logging
+type LogWriter struct {
 	http.ResponseWriter
 	statusCode int
 }
 
 //NewLoggingResponseWriter constructor  for LoggingResponseWriter
-func NewLoggingResponseWriter(w http.ResponseWriter) *LoggingResponseWriter {
-	return &LoggingResponseWriter{w, http.StatusOK}
+func NewLoggingResponseWriter(w http.ResponseWriter) *LogWriter {
+	return &LogWriter{w, http.StatusOK}
 }
 
 //WriteHeader pulls status message from status code
-func (lrw *LoggingResponseWriter) WriteHeader(code int) {
+func (lrw *LogWriter) WriteHeader(code int) {
 	lrw.statusCode = code
 	lrw.ResponseWriter.WriteHeader(code)
 }

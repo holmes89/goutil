@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/context"
 )
 
+//Authenticate injects sub and claims into request from JWT in auth header
 func Authenticate(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 

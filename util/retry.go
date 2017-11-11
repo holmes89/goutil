@@ -6,7 +6,8 @@ import (
 	"time"
 )
 
-func retry(attempts int, sleep time.Duration, callback func() error) (err error) {
+//Retry is a utility to repeat steps over a period of time logging the errors for tasks such as connecting to resources
+func Retry(attempts int, sleep time.Duration, callback func() error) (err error) {
 	for i := 0; ; i++ {
 		err = callback()
 		if err == nil {
