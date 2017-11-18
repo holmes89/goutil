@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/context"
@@ -16,6 +17,7 @@ func Authenticate(next http.Handler) http.Handler {
 
 		// sample token string taken from the New example
 		tokenString := r.Header.Get("Authorization")
+		tokenString = strings.Replace(tokenString, "Bearer ", "", -1)
 		if tokenString == "" {
 			http.Error(w, "Authorization Header Required", http.StatusUnauthorized)
 			return
